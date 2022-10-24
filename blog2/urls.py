@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from post1.views import home_view # hangi viewi kullacagimizi belirttik
 
+#urlpatterns listesi veb stesindeki adreslerin tanimlandigi yerdir
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls), #admin panali icin adres tanimi
+    url(r'^$',home_view) #anasayfa icin adres taini // '^$'baslangic ve bitis anlamindadir
+                # virgülden sonra hangi view icin calısacagimizi belirtmeliyiz
 ]
