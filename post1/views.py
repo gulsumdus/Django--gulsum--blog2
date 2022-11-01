@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse #daha kolay anlasilmasi icin httpResponse metodunu cagirdik
+from django.shortcuts import get_object_or_404 #error control'u import ettik
 from.models import Post
 # Create your views here.
 
@@ -23,9 +24,9 @@ def post_index(request): #bir tek argumani olmalıdır 'request', request kullan
 
 
 
-def post_detail(request): 
-     post=Post.objects.get(id=2) #id si 2 olan objecti get metoduyla getiriyoruz
-      
+def post_detail(request, id1):# id1 argumanı post1/urls.py da tanımladık ve bunu aşağıdaki get metodunda uyguluyoruz
+     #post=Post.objects.get(id=2) #id si 2 olan objecti get metoduyla getiriyoruz
+     post = get_object_or_404(Post, id=id1)# id'si 2 olanı değil artık diğer bütün id lere id1 üzerinden ulaşırız... 
      context ={                      #post nesnesini icerik olarak gonderme
             'post':post,
      }                                        
