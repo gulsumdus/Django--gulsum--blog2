@@ -8,7 +8,10 @@
 
         {% for post in posts %}
             {{ post.id}}<br>
-            {{post.title}}<br>
+            <a href="{{post.get_absolute_url}}">{{post.title}}</a><br>
+            <!--{% url 'detail_1' id1=post.id %}-->
+           <!--/post1/{{post.id}}-->
+           <!--{{post.title}}<br>-->
             {{post.content}}<br>
             {{post.publishing_date}}<br>
 
@@ -18,4 +21,4 @@
         <!--for döngüsüyle getirdiklerimiz obj bilgilerini sayfaya yazdırıyoruz -->
        
     </body>
-    </html>
+    </html> 
