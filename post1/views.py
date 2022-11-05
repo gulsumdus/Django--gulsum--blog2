@@ -72,7 +72,7 @@ def post_update(request,id):
      form=PostForm(request.POST or None,instance=post)#instance ile post nesnesini formda gosteriyoruz
      if form.is_valid():
           form.save()#yapilan degisiklikleri kaydediyoruz
-          messages.success(request,'Basarili bir sekilde olusturuldu.')
+          messages.success(request,'Basarili bir sekilde olusturuldu.') # bu mesaj turu success tir fakat reror ve daha fazlasıi icin django sayfasindan ulasilabilinir!!
           return HttpResponseRedirect(post.get_absolute_url())#formda degisiklik yaptiktan sonra detail sayfasini oto olarak dondurur
      context={
           'form':form,

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html  lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <Title>Title</Title>
-    </head>
-    <body>
-       <!--merhaba, burasi anasayfa /yorum satırı/--> 
-     Merhaba, {{isim}}  
-     
-</body>
-</html>
+
+{% extends 'base.html' %}
+
+{% block title %} Anasayfa - {{block.super}} {% endblock %}
+
+
+
+{% block body %}
+
+     Merhaba, {{isim}}
+
+{% endblock %}
