@@ -4,7 +4,7 @@ from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponse
   #error control'u import ettik
 from.models import Post
 from.forms import PostForm #forms.py deki PostForm classını import ettik
-# Create your views here.
+from django.contrib import messages #mesajlar icin import ettik
 
 #def post_index(request): #bir tek argumani olmalıdır 'request', request kullanicilarin istekleri hakkinda bilgi getirir
  #    return HttpResponse ('Burası Post index sayfası') 
@@ -44,17 +44,19 @@ def post_create(request):
      # 2 alternative sekilde formdan alinan bilgilerle post obj olusturabiliriz:
 
      #1
-     if request.method=='POST':
-          form=PostForm(request.POST)#formdan bilgileri kaydeder.
-          if form.is_valid():#kontrol eder
-               form.save()
-     else:
-          #formu kullaniciya goster
-          form=PostForm()
+     #if request.method=='POST':
+     #     form=PostForm(request.POST)#formdan bilgileri kaydeder.
+     #    if form.is_valid():#kontrol eder
+     #         form.save()
+     #else:
+     #     #formu kullaniciya goster
+     #     form=PostForm()
      #2
      form=PostForm(request.POST or None)#requestpost dolu gelirse parametre olarak al değilse alma demektirr
      if form.is_valid():
           dondurme=form.save()
+          messages.success(request,'Basarili bir sekilde olusturuldu.')
+
           return HttpResponseRedirect(dondurme.get_absolute_url())#kaydettiklerimizi detail(get_abs_url ile) sayfasina dondurur
 
      context={
@@ -70,6 +72,7 @@ def post_update(request,id):
      form=PostForm(request.POST or None,instance=post)#instance ile post nesnesini formda gosteriyoruz
      if form.is_valid():
           form.save()#yapilan degisiklikleri kaydediyoruz
+          messages.success(request,'Basarili bir sekilde olusturuldu.')
           return HttpResponseRedirect(post.get_absolute_url())#formda degisiklik yaptiktan sonra detail sayfasini oto olarak dondurur
      context={
           'form':form,
