@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse,get_object_or_404#daha kolay anlasilmasi icin httpResponse metodunu cagirdik
+from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponseRedirect #bu metod ile sayfalar arasi yonlendirme yapiyoruz
+#daha kolay anlasilmasi icin httpResponse metodunu cagirdik
   #error control'u import ettik
 from.models import Post
 from.forms import PostForm #forms.py deki PostForm classını import ettik
@@ -52,7 +53,9 @@ def post_create(request):
      #2
      form=PostForm(request.POST or None)#requestpost dolu gelirse parametre olarak al değilse alma demektirr
      if form.is_valid():
-          form.save()
+          dondurme=form.save()
+          return HttpResponseRedirect(dondurme.get_absolute_url())#kaydettiklerimizi detail(get_abs_url ile) sayfasina dondurur
+
      context={
           'form':form,
      }
@@ -61,8 +64,16 @@ def post_create(request):
       #    print(request.POST)
      return render(request,'post/form.html',context)
 
-def post_update(request): 
-     return HttpResponse ('Burası Post update sayfası') 
+def post_update(request,id): 
+     post = get_object_or_404(Post, id=id)#postu getirme metodu(id'ye gore)
+     form=PostForm(request.POST or None,instance=post)#instance ile post nesnesini formda gosteriyoruz
+     if form.is_valid():
+          form.save()#yapilan degisiklikleri kaydediyoruz
+          return HttpResponseRedirect(post.get_absolute_url())#formda degisiklik yaptiktan sonra detail sayfasini oto olarak dondurur
+     context={
+          'form':form,
+     }
+     return render(request,'post/form.html',context)
 
 def post_delete(request): 
      return HttpResponse ('Burası Post delete sayfası') 
