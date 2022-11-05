@@ -4,13 +4,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
         <tittle>{% block title %}Django Dersleri{% endblock %}</tittle>
         
-        <link rel="stylesheet" href="{% static 'style.css' %}">
-        <img src="{% static 'resim.jpg'%}"> <!--resim ekleme (static klasorunden*)-->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+       <!--<link rel="stylesheet" href="{% static 'style.css' %}">
+        <img src="{% static 'resim.jpg'%}"> //resim ekleme (static klasorunden*)-->
     </head>
     <body>
+        {% include 'header.html' %}
         {% include 'messages.html'%}
 
         {% block body %}
@@ -18,6 +21,8 @@
 
 
         {% endblock %}
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
         
     </body>
     </html>

@@ -122,5 +122,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static') #proje dizinindeki static klasorunu isaret eder(sunucu ortamında kullanılmasina gerek yok)
     ]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/') #static dosyalarin toplanacagi klasor#sunucu ortamında kullanılır
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/') #static dosyalarin toplanacagi klasor#sunucu ortamında kullanılır
 
