@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponseRedirect #bu metod ile sayfalar arasi yonlendirme yapiyoruz
+from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponseRedirect,redirect
+# httpresponse..bu metod ile sayfalar arasi yonlendirme yapiyoruz
 #daha kolay anlasilmasi icin httpResponse metodunu cagirdik
   #error control'u import ettik
 from.models import Post
@@ -75,5 +76,7 @@ def post_update(request,id):
      }
      return render(request,'post/form.html',context)
 
-def post_delete(request): 
-     return HttpResponse ('Burası Post delete sayfası') 
+def post_delete(request,id): 
+     post = get_object_or_404(Post, id=id)
+     post.delete()
+     return redirect("post1:index")#post:index ile post_index metoduna yonlendirme yaptik
