@@ -6,9 +6,24 @@
 
 
 {% block body %}
+      <div class="container-fluid"> <!--sutunlarin kenarlarinda bosluk kalmamasi icin fluid ozelligini ekledik-->
+          <div class="row">
+               <div class="col-md-3" style="background-color: yellow; height:100px;">1.sutun</div> <!--col-md-6 :(col:column:md=medium,masaüstü bilgs. icin,6 ise ekran genisliginden 6 sutünluk yer tut demek)6 sütun oluşturur-->
+               <div class="col-md-3" style="background-color: rgb(128, 31, 99); height:100px;">2.sutun</div>
+               <div class="col-md-3" style="background-color: rgb(44, 136, 148); height:100px;">1.sutun</div> <!--col-md-6 :(col:column:md=medium,masaüstü bilgs. icin,6 ise ekran genisliginden 6 sutünluk yer tut demek)6 sütun oluşturur-->
+               <div class="col-md-3" style="background-color: blue; height:100px;">2.sutun</div>
+      </div>
 
  
-    <br> Merhaba, {{isim}}
-    
-
+ <!-- ya da tek bir sırada iç içe gecirilmis sekilde yapabiliriz-->
+     <div class="row">
+          <div class="col-md-4" style="background-color: rgb(204, 46, 46); height:100px;">1.sutun</div> 
+          <div class="col-md-5" style="background-color: rgb(28, 196, 112); height:100px;">2.sutun</div>
+               <div class="row">
+                   <div class="col-md-4" style="background-color: rgb(201, 141, 62); height:100px;">1.sutun</div> 
+                   <div class="col-md-2" style="background-color: rgb(128, 31, 99); height:100px;">2.sutun</div>
+                   <div class="col-md-3" style="background-color: rgb(37, 31, 128); height:100px;">2.sutun</div>
+               </div>
+          </div>
+     </div>
 {% endblock %}
