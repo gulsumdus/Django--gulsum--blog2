@@ -52,7 +52,7 @@ def post_create(request):
      #     #formu kullaniciya goster
      #     form=PostForm()
      #2
-     form=PostForm(request.POST or None)#requestpost dolu gelirse parametre olarak al değilse alma demektirr
+     form=PostForm(request.POST or None, request.FILES or None)#requestpost dolu gelirse parametre olarak al değilse alma demektirr#request.FILES ile resim ve dosya ekleme bolumu
      if form.is_valid():
           dondurme=form.save()
           messages.success(request,'Basarili bir sekilde olusturuldu.')
@@ -69,7 +69,7 @@ def post_create(request):
 
 def post_update(request,id): 
      post = get_object_or_404(Post, id=id)#postu getirme metodu(id'ye gore)
-     form=PostForm(request.POST or None,instance=post)#instance ile post nesnesini formda gosteriyoruz
+     form=PostForm(request.POST or None,request.FILES or None,instance=post)#instance ile post nesnesini formda gosteriyoruz #request.FILES ile resim ve dosya ekleme bolumu
      if form.is_valid():
           form.save()#yapilan degisiklikleri kaydediyoruz
           messages.success(request,'Basarili bir sekilde olusturuldu.') # bu mesaj turu success tir fakat reror ve daha fazlasıi icin django sayfasindan ulasilabilinir!!
@@ -82,4 +82,4 @@ def post_update(request,id):
 def post_delete(request,id): 
      post = get_object_or_404(Post, id=id)
      post.delete()
-     return redirect("post:index")#post:index ile post_index metoduna yonlendirme yaptik
+     return redirect("post_1:index")#post:index ile post_index metoduna yonlendirme yaptik

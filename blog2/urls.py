@@ -29,6 +29,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from home.views import home_view
+from django.conf.urls.static import static
+from django.conf import settings #son ikisini dosya ve resim yüklemek icin import ettik
 
 urlpatterns = [ 
     url(r'^admin/',admin.site.urls),
@@ -39,3 +41,5 @@ urlpatterns = [
     url(r'^post1/', include('post1.urls')), # include ve post1.urls diyerek post1 uyg. url yi referans vermiş olduk 
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media url ve media rood değişkenlerini kullanarak upload edilecek dosyanın url tanmlamasini yaptik

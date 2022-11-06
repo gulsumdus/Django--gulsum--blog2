@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'post1',
     #3.parti uygulamalar
     'crispy_forms',
+    'django_cleanup',#olusturulan postun butun verilerini(resimlerini..) projeden siler
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,6 @@ STATICFILES_DIRS = [
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/') #static dosyalarin toplanacagi klasor#sunucu ortamında kullanılır
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'#crispy frameworkü
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #proje dizinindeki media klasorunu isaret eder

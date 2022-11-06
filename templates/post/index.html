@@ -7,6 +7,9 @@
           <div class="col-md-6 col-md-offset-3"> <!--col.... anlamı post blogunu 3 birim saga kaydir demek-->
             <div class="thumbnail">
               <div class="caption">
+                {% if post.image %}{#postun resmi varsa gosterir#}
+                  <img src="{{post.image.url}}" class="img-responsive"><!--postun resmini gosterir-->
+                {% endif %}
                 <h3>{{post.title}}<small><br>{{post.publishing_date|timesince}}</small> önce</h3><!--timesince filtresi postun yayinlanma zamani ile su anki zamani arasindaki farki gosterir-->
                 <p>{{post.content|linebreaks|truncatechars:150}}</p> <!--linebreaks filtresi postlarin alt satira gecmesini saglar--><!--truncatewords filtresi postun icerigini 15 kelimeye kadar kisaltir--><!--truncatechars filtresi postun icerigini 150 karaktere kadar kisaltir-->
                 <p><a href="{{post.get_absolute_url}}" class="btn btn-primary" role="button">Incele</a> 
