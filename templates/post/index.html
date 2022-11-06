@@ -13,9 +13,13 @@
                 <h3>{{post.title}}<small><br>{{post.publishing_date|timesince}}</small> önce</h3><!--timesince filtresi postun yayinlanma zamani ile su anki zamani arasindaki farki gosterir-->
                 <p>{{post.content|linebreaks|truncatechars:150}}</p> <!--linebreaks filtresi postlarin alt satira gecmesini saglar--><!--truncatewords filtresi postun icerigini 15 kelimeye kadar kisaltir--><!--truncatechars filtresi postun icerigini 150 karaktere kadar kisaltir-->
                 <p><a href="{{post.get_absolute_url}}" class="btn btn-primary" role="button">Incele</a> 
+                 
+                  {% if user.is_authenticated %}<!--eger kullanici giris yaptiysa bu metodlari kullanabilir-->
                   <a href="{{post.get_update_url}}" class="btn btn-default" role="button">Guncelle</a>
-                    <a href="{{post.get_delete_url}}" class="btn btn-danger" role="button">Sİl</a> <!--danger butonu kirmizi renge cevirir-->
-              </div>                                               
+                  <a href="{{post.get_delete_url}}" class="btn btn-danger" role="button">Sİl</a> <!--danger butonu kirmizi renge cevirir-->
+                  {% endif %}
+                  </div> 
+                </div>                                              
             </div>
         </div>
     

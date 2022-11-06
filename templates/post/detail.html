@@ -11,10 +11,11 @@
               {% endif %}
               <h3>{{post.title}}<small><br>{{post.publishing_date|timesince}}</small> once</h3><!--timesince filtresi postun yayinlanma zamani ile su anki zamani arasindaki farki gosterir-->
               <p>{{post.content|linebreaks}}</p>
-              <p><a href="{{post.get_absolute_url}}" class="btn btn-primary" role="button">Incele</a> 
+              <p>  {% if user.is_authenticated %}<!--eger kullanici giris yapmissa-->
                 <a href="{{post.get_update_url}}" class="btn btn-default" role="button">Guncelle</a>
                 <a href="{{post.get_delete_url}}" class="btn btn-danger" role="button">Sİl</a> <!--danger butonu kirmizi renge cevirir-->
-                </p>
+                {% endif %}
+              </p>
              </div> 
            </div>                                               
       </div>

@@ -31,7 +31,10 @@
             
             <!-- Temel Sayfalar -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'post_1:create' %}">Yazı Ekle</a></li><!--post_1:create yazarak post_1 uygulamasinda create isimli view i cagirdik-->
+                {% if user.is_authenticated %}<!--eger kullanıcı giris yaptıysa create yani kitap ekle ortaya cikar-->
+                <li><a href="{% url 'post_1:create' %}">Kitap Ekle</a></li> <!--post_1:create yazarak post_1 uygulamasinda create isimli view i cagirdik-->
+                {% endif %}
+              
                 <li><a href="{% url 'home' %}">Anasayfa</a></li>
                 <li><a href="{% url 'post_1:index' %}">Blog</a></li> <!--hata veriyor index urlsi tekrar bak--> 
                 <li><a href="#">Hakkımda</a></li>

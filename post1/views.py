@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponseRedirect,redirect
+from django.shortcuts import render, HttpResponse,get_object_or_404,HttpResponseRedirect,redirect,Http404
 # httpresponse..bu metod ile sayfalar arasi yonlendirme yapiyoruz
 #daha kolay anlasilmasi icin httpResponse metodunu cagirdik
   #error control'u import ettik
+
 from.models import Post
 from.forms import PostForm #forms.py deki PostForm classını import ettik
 from django.contrib import messages #mesajlar icin import ettik
@@ -39,6 +40,14 @@ def post_detail(request, id):# id1 argumanı post1/urls.py da tanımladık ve bu
      return render(request,'post/detail.html',context) #render fonksiyonu cagırıyoruz ve bunun icine yazilacak bir html sayfası oluşturuyoruz
 
 def post_create(request): 
+
+     
+
+     if not request.user.is_authenticated(): #kullanici giris yapmamissa post olusturamaz #not kullanarak giris yapmamis ise demis olduk
+         return Http404() #kullanici giris yapmamissa bu hata sayfasi dondurulur
+    
+    
+    
      #form=PostForm()//serverdan gönderilen form biligilerini almak icin asagida kulllanacagiz
 
      # 2 alternative sekilde formdan alinan bilgilerle post obj olusturabiliriz:
@@ -67,7 +76,12 @@ def post_create(request):
       #    print(request.POST)
      return render(request,'post/form.html',context)
 
-def post_update(request,id): 
+def post_update(request,id):
+
+     
+     if not request.user.is_authenticated(): #kullanici giris yapmamissa post guncellenemez #not kullanarak giris yapmamis ise demis olduk
+         return Http404()
+
      post = get_object_or_404(Post, id=id)#postu getirme metodu(id'ye gore)
      form=PostForm(request.POST or None,request.FILES or None,instance=post)#instance ile post nesnesini formda gosteriyoruz #request.FILES ile resim ve dosya ekleme bolumu
      if form.is_valid():
@@ -79,7 +93,12 @@ def post_update(request,id):
      }
      return render(request,'post/form.html',context)
 
-def post_delete(request,id): 
+def post_delete(request,id):
+
+     
+     if not request.user.is_authenticated(): #kullanici giris yapmamissa post silinemez #not kullanarak giris yapmamis ise demis olduk
+         return Http404()
+
      post = get_object_or_404(Post, id=id)
      post.delete()
      return redirect("post_1:index")#post:index ile post_index metoduna yonlendirme yaptik
