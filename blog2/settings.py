@@ -30,13 +30,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Django'nun kendi uygulamaları
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #kendi uygulamalarımız
     'post1',
+    #3.parti uygulamalar
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,5 +126,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static') #proje dizinindeki static klasorunu isaret eder(sunucu ortamında kullanılmasina gerek yok)
     ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/') #static dosyalarin toplanacagi klasor#sunucu ortamında kullanılır
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/') #static dosyalarin toplanacagi klasor#sunucu ortamında kullanılır
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'#crispy frameworkü
