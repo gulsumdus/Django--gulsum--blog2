@@ -33,6 +33,7 @@ from home.views import home_view
 urlpatterns = [ 
     url(r'^admin/',admin.site.urls),
 
+
     url(r'^$',home_view, name='home'),
 
     url(r'^post1/', include('post1.urls')), # include ve post1.urls diyerek post1 uyg. url yi referans vermiş olduk 

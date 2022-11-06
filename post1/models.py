@@ -13,3 +13,12 @@ class Post(models.Model): #model k�t�phanesinden model class� �a��rd
     def get_absolute_url(self):
         return reverse('post_1:detail',kwargs={'id':self.id})
        #  return "/post/{}".format(self.id)#bu fnksiyon hangi post nesnesinde cagrildiysa onun adresini hesaplar.
+#diger url adresleri icin de adres metodlari olusturuyoruz..
+    def get_create_url(self):
+        return reverse('post_1:create')#create icin arguman vermemize gerek yok
+
+    def get_update_url(self):
+        return reverse('post_1:update',kwargs={'id':self.id})
+
+    def get_delete_url(self):
+        return reverse('post_1:delete',kwargs={'id':self.id})

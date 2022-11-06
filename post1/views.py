@@ -82,4 +82,4 @@ def post_update(request,id):
 def post_delete(request,id): 
      post = get_object_or_404(Post, id=id)
      post.delete()
-     return redirect("post1:index")#post:index ile post_index metoduna yonlendirme yaptik
+     return redirect("post:index")#post:index ile post_index metoduna yonlendirme yaptik

@@ -2,7 +2,7 @@
 from django.conf.urls import url
 from .views import *
 
-app_name= 'post_1' #karisikliklari onlemek icin app_name tanimladik
+app_name= "post_1" #karisikliklari onlemek icin app_name tanimladik
 
 
 urlpatterns = [

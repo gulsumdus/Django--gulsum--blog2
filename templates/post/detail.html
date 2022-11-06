@@ -1,23 +1,21 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-    {% if messages %}
-    <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{message.tags}}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %}
-
-      
-    {{ post.id}}<br>
-    {{post.title}}<br>
-    {{post.content}}<br>
-    {{post.publishing_date}}<br>
-
-        
-    <!--for döngüsüyle post listesini getiriyoruz -->
-         
-        <!--for döngüsüyle getirdiklerimiz obj bilgilerini sayfaya yazdırıyoruz -->
+      <div class="container ">
+      <div class = "row">
+      <div class="col-md-6 col-md-offset-3"> <!--col.... anlamı post blogunu 3 birim saga kaydir demek-->
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>{{post.title}}<small><br>{{post.publishing_date|timesince}}</small> once</h3><!--timesince filtresi postun yayinlanma zamani ile su anki zamani arasindaki farki gosterir-->
+              <p>{{post.content|linebreaks}}</p>
+              <p><a href="{{post.get_absolute_url}}" class="btn btn-primary" role="button">Incele</a> 
+                <a href="{{post.get_update_url}}" class="btn btn-default" role="button">Guncelle</a>
+                <a href="{{post.get_delete_url}}" class="btn btn-danger" role="button">Sİl</a> <!--danger butonu kirmizi renge cevirir-->
+                </p>
+             </div> 
+           </div>                                               
+      </div>
+      </div> 
+      </div>
+     
 {% endblock %}
